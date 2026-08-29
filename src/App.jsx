@@ -8,6 +8,7 @@ import PendingCertificate from './components/PendingCertificate';
 import CitizenshipCard from './components/CitizenshipCard';
 import CitizenLoginModal from './components/CitizenLoginModal';
 import AdminPanel from './pages/AdminPanel';
+import EmpireHistory from './pages/EmpireHistory';
 import { Crown, Lock } from 'lucide-react';
 import { checkStatus } from './utils/api';
 
@@ -170,6 +171,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PortalPage />} />
+        <Route path="/history" element={<EmpireHistory />} />
         <Route path="/admin" element={<AdminPanel />} />
         {/* Catch-all → back to portal */}
         <Route path="*" element={<PortalPage />} />

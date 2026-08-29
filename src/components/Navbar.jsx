@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Crown, Sparkles, UserCheck } from 'lucide-react';
-import { toggleAudio, isAudioEnabled } from '../utils/audio';
+import { Link } from 'react-router-dom';
+import { Volume2, VolumeX, Crown, Sparkles, UserCheck, BookOpen } from 'lucide-react';
+import { toggleAudio } from '../utils/audio';
 
 export default function Navbar({ onScrollToForm, onOpenLogin }) {
   const [audioOn, setAudioOn] = useState(true);
@@ -24,13 +25,13 @@ export default function Navbar({ onScrollToForm, onOpenLogin }) {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-[#090514]/80 border-b border-[#FFD700]/20 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Logo & Empire Title */}
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative w-11 h-11 flex items-center justify-center rounded-full bg-[#2A085C] border border-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.3)]">
+        <Link to="/" className="flex items-center gap-3 cursor-pointer group">
+          <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-[#2A085C] border border-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.3)] group-hover:scale-105 transition-transform">
             {/* Macedonian 16-ray Sun SVG */}
-            <svg viewBox="0 0 100 100" className="w-8 h-8 sun-pulse-glow">
+            <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8 sun-pulse-glow">
               <circle cx="50" cy="50" r="18" fill="#FFD700" />
               <g stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
                 <line x1="50" y1="5" x2="50" y2="25" />
@@ -56,54 +57,64 @@ export default function Navbar({ onScrollToForm, onOpenLogin }) {
             </svg>
           </div>
           <div>
-            <span className="font-cinzel font-black tracking-widest text-lg sm:text-xl gold-gradient-text block leading-none">
+            <span className="font-cinzel font-black tracking-widest text-base sm:text-xl gold-gradient-text block leading-none">
               MACEDONIA
             </span>
-            <span className="font-cinzel text-[10px] tracking-wider text-[#CBD5E1]/80 block uppercase mt-1">
+            <span className="font-cinzel text-[9px] sm:text-[10px] tracking-wider text-[#CBD5E1]/80 block uppercase mt-1">
               Imperial Sovereign Portal
             </span>
           </div>
-        </div>
+        </Link>
 
-        {/* Live Realm Clock & Audio Controls */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#160b2c]/80 border border-[#FFD700]/20 text-xs font-mono text-[#FFD700]">
+        {/* Navigation & Controls */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#160b2c]/80 border border-[#FFD700]/20 text-xs font-mono text-[#FFD700]">
             <Crown className="w-3.5 h-3.5 text-[#FFD700]" />
             <span>{timeString}</span>
           </div>
 
+          {/* Empire History Link */}
+          <Link
+            to="/history"
+            className="btn-outline-gold !py-2.5 !px-3 sm.px-4 !text-xs flex items-center gap-1.5"
+            title="Explore Macedonian Empire History"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#FFD700]" />
+            <span className="hidden sm:inline">Empire History</span>
+            <span className="sm:hidden">History</span>
+          </Link>
+
           {/* Audio toggle button */}
           <button
             onClick={handleAudioToggle}
-            className="p-2.5 rounded-full bg-[#1a0c30] border border-[#FFD700]/30 text-[#FFD700] hover:bg-[#2A085C] hover:border-[#FFD700] hover:scale-105 transition-all shadow-[0_0_10px_rgba(255,215,0,0.15)] flex items-center gap-2"
+            className="p-2.5 rounded-full bg-[#1a0c30] border border-[#FFD700]/30 text-[#FFD700] hover:bg-[#2A085C] hover:border-[#FFD700] hover:scale-105 transition-all flex items-center gap-1.5"
             title={audioOn ? 'Mute Royal Audio' : 'Enable Royal Audio'}
           >
             {audioOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4 text-gray-400" />}
-            <span className="hidden sm:inline text-xs font-cinzel text-[#FFF099]">
-              {audioOn ? 'Audio ON' : 'Audio OFF'}
-            </span>
           </button>
 
           {/* Check Status / Login button */}
           <button
             type="button"
             onClick={onOpenLogin}
-            className="btn-outline-gold !py-2.5 !px-4 !text-xs flex items-center gap-1.5"
+            className="btn-outline-gold !py-2.5 !px-3 sm.px-4 !text-xs flex items-center gap-1.5"
           >
             <UserCheck className="w-3.5 h-3.5 text-[#FFD700]" />
-            <span className="hidden sm:inline">Citizen Login</span>
-            <span className="sm:hidden">Login</span>
+            <span className="hidden md:inline">Citizen Login</span>
+            <span className="md:hidden">Login</span>
           </button>
 
           {/* Quick Apply CTA */}
-          <button
-            type="button"
-            onClick={onScrollToForm}
-            className="btn-gold !py-2.5 !px-5 !text-xs"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            Apply Now
-          </button>
+          {onScrollToForm && (
+            <button
+              type="button"
+              onClick={onScrollToForm}
+              className="btn-gold !py-2.5 !px-4 sm:!px-5 !text-xs"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Apply Now</span>
+            </button>
+          )}
         </div>
 
       </div>
