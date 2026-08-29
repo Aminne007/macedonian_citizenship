@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -8,7 +8,7 @@ import PendingCertificate from './components/PendingCertificate';
 import CitizenshipCard from './components/CitizenshipCard';
 import CitizenLoginModal from './components/CitizenLoginModal';
 import AdminPanel from './pages/AdminPanel';
-import { Crown } from 'lucide-react';
+import { Crown, Lock } from 'lucide-react';
 import { checkStatus } from './utils/api';
 
 const SESSION_KEY = 'macedonian_citizen_handle';
@@ -147,8 +147,16 @@ function PortalPage() {
           <p className="font-garamond italic text-sm text-[#CBD5E1]/60">
             "By the Sun of Macedonia, let honor and loyalty shine across all digital frontiers."
           </p>
-          <div className="text-[11px] font-cinzel text-[#CBD5E1]/40">
-            © 334 BC – 2026 AD Imperial Sovereign Court of Pella. All Rights Reserved.
+          <div className="text-[11px] font-cinzel text-[#CBD5E1]/40 flex items-center justify-center gap-1.5">
+            <span>© 334 BC – 2026 AD Imperial Sovereign Court of Pella. All Rights Reserved.</span>
+            {/* Hidden Admin Access Button */}
+            <Link
+              to="/admin"
+              className="opacity-30 hover:opacity-100 transition-all p-1 text-[#FFD700] hover:scale-110"
+              title="Imperial Admin Portal"
+            >
+              <Lock className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </footer>
