@@ -175,7 +175,7 @@ if (IS_PROD) {
   });
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🏛️  Macedonian Imperial Server running on port ${PORT}`);
   console.log(`   Environment: ${IS_PROD ? 'PRODUCTION' : 'DEVELOPMENT'}`);
 });
