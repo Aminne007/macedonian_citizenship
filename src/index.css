@@ -329,8 +329,21 @@
   .animate-fade-in { animation: fadeInScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────────── */
+/* ── Responsive Mobile Optimizations ─────────────────────────────────────── */
 @media (max-width: 640px) {
-  .btn-gold { padding: 12px 24px; font-size: 0.82rem; }
-  .imperial-card-wrap { aspect-ratio: auto; min-height: 320px; padding: 16px; }
+  .btn-gold { padding: 12px 20px; font-size: 0.82rem; }
+  .btn-outline-gold { padding: 10px 18px; font-size: 0.8rem; }
+  .glass-card { border-radius: 16px; }
+  .glass-card-gold { border-radius: 16px; }
+  .imperial-card-wrap { 
+    aspect-ratio: auto; 
+    min-height: 330px; 
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .royal-input {
+    font-size: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }

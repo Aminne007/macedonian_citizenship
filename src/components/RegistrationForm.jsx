@@ -150,10 +150,15 @@ export default function RegistrationForm({ onSubmitComplete, formRef }) {
       <div className="glass-card overflow-hidden">
 
         {/* Card Top Banner */}
-        <div className="bg-gradient-to-r from-[#1a0840] to-[#2A085C] px-6 sm:px-10 py-5 border-b border-[#FFD700]/25">
-          <p className="font-cinzel text-[10px] tracking-widest text-[#FFD700]/70 uppercase mb-0.5">Imperial Decree #2026</p>
-          <h2 className="font-cinzel font-bold text-xl sm:text-2xl text-white">
-            CITIZENSHIP REGISTRATION
+        <div className="bg-gradient-to-r from-[#1a0840] to-[#2A085C] px-4 sm:px-10 py-5 border-b border-[#FFD700]/25 text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+            <span className="gold-wax-seal !w-6 !h-6 !text-[10px]">👑</span>
+            <span className="font-cinzel text-[10px] sm:text-xs tracking-widest text-[#FFD700] uppercase font-bold">
+              Official Citizenship Petition #2026
+            </span>
+          </div>
+          <h2 className="font-cinzel font-black text-lg sm:text-2xl text-white tracking-wider">
+            CITIZENSHIP REGISTRATION FORM
           </h2>
 
           {/* Progress Bar */}
@@ -161,20 +166,20 @@ export default function RegistrationForm({ onSubmitComplete, formRef }) {
             <div className="flex justify-between mb-2">
               {STEPS.map((label, i) => (
                 <div key={label} className="flex flex-col items-center gap-1">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-cinzel font-bold border-2 transition-all duration-300 ${
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-cinzel font-bold border-2 transition-all duration-300 ${
                     i < step ? 'bg-[#FFD700] border-[#FFD700] text-[#0a0514]' :
                     i === step ? 'bg-[#2A085C] border-[#FFD700] text-[#FFD700] shadow-[0_0_10px_rgba(255,215,0,0.4)]' :
                     'bg-transparent border-[#FFD700]/25 text-[#CBD5E1]/40'
                   }`}>
                     {i < step ? <CheckCircle2 className="w-4 h-4" /> : ['I','II','III','IV'][i]}
                   </div>
-                  <span className={`font-cinzel text-[9px] uppercase tracking-wide hidden sm:block ${i === step ? 'text-[#FFD700]' : 'text-[#CBD5E1]/40'}`}>
+                  <span className={`font-cinzel text-[9px] sm:text-[10px] uppercase tracking-wide ${i === step ? 'text-[#FFD700] font-bold' : 'text-[#CBD5E1]/40'}`}>
                     {label}
                   </span>
                 </div>
               ))}
             </div>
-            <div className="h-1 rounded-full bg-[#FFD700]/10 overflow-hidden">
+            <div className="h-1.5 rounded-full bg-[#FFD700]/10 overflow-hidden">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#DAA520] transition-all duration-500"
                 style={{ width: `${progressPct}%` }}
